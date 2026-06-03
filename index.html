@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C e C Construção Civil | Carlos Eduardo - Pedreiro Profissional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para ícones modernos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#09090b',
+                            dark: '#18181b',
+                            orange: '#e0842a',
+                            lightOrange: '#f5a847',
+                            gray: '#a1a1aa'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-white antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brand-black/90 backdrop-blur-md border-b border-zinc-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo area replicating the uploaded image -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 flex items-center justify-center bg-zinc-900 border border-brand-orange/30 rounded-lg group-hover:border-brand-orange transition-all p-1">
+                    <!-- SVG Replicando a marca C e C -->
+                    <svg viewBox="0 0 100 100" class="w-10 h-10 text-brand-orange" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Esboço da Casa / Andaimes -->
+                        <path d="M10 90 L90 90" stroke-width="2" />
+                        <path d="M25 90 L25 15 M75 90 L75 15" stroke-width="1.5" stroke-dasharray="2 2" />
+                        <path d="M15 45 L85 45 M15 70 L85 70" stroke-width="1" />
+                        <!-- Prédio/Casa central -->
+                        <path d="M30 90 V50 L50 35 L70 50 V90" stroke="currentColor" stroke-width="3" fill="none" />
+                        <path d="M40 90 V25 L50 15 L60 25 V90" stroke="currentColor" stroke-width="2" />
+                        <!-- Linhas de Construção extras -->
+                        <path d="M20 58 L45 35 M55 35 L80 58" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-widest text-brand-orange leading-tight">C e C</span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-brand-gray -mt-1">construção civil</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#inicio" class="text-sm font-medium hover:text-brand-orange transition-colors">Início</a>
+                <a href="#sobre" class="text-sm font-medium hover:text-brand-orange transition-colors">Quem Somos</a>
+                <a href="#servicos" class="text-sm font-medium hover:text-brand-orange transition-colors">Serviços</a>
+                <a href="#portfolio" class="text-sm font-medium hover:text-brand-orange transition-colors">Portfólio</a>
+                <a href="#contato" class="text-sm font-medium hover:text-brand-orange transition-colors">Contato</a>
+            </nav>
+
+            <!-- CTA Header -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="tel:19974194179" class="text-xs text-brand-gray hover:text-white flex items-center gap-2 transition-colors">
+                    <i data-lucide="phone" class="w-4 h-4 text-brand-orange"></i>
+                    (19) 97419-4179
+                </a>
+                <a href="https://wa.me/5519974194179?text=Olá%20Carlos!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="bg-brand-orange hover:bg-brand-lightOrange text-zinc-950 font-bold px-4 py-2 rounded-lg text-sm transition-all shadow-lg shadow-brand-orange/20 flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Orcamento Grátis
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-brand-gray hover:text-white p-2">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-black border-b border-zinc-800 px-4 py-6 space-y-4">
+            <a href="#inicio" class="block text-base font-medium hover:text-brand-orange transition-colors py-2">Início</a>
+            <a href="#sobre" class="block text-base font-medium hover:text-brand-orange transition-colors py-2">Quem Somos</a>
+            <a href="#servicos" class="block text-base font-medium hover:text-brand-orange transition-colors py-2">Serviços</a>
+            <a href="#portfolio" class="block text-base font-medium hover:text-brand-orange transition-colors py-2">Portfólio</a>
+            <a href="#contato" class="block text-base font-medium hover:text-brand-orange transition-colors py-2">Contato</a>
+            <div class="pt-4 border-t border-zinc-800 flex flex-col gap-4">
+                <a href="tel:19974194179" class="text-sm text-brand-gray flex items-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4 text-brand-orange"></i>
+                    (19) 97419-4179
+                </a>
+                <a href="https://wa.me/5519974194179?text=Olá%20Carlos!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="bg-brand-orange text-center text-zinc-950 font-bold py-3 rounded-lg text-sm transition-all">
+                    Chamar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <!-- Background decorative grid & light effects -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-zinc-800/25 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Hero Text -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3.5 py-1.5 rounded-full text-xs text-brand-orange font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Carlos Eduardo - Pedreiro Profissional
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
+                    Mão de Obra de <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-500">
+                        Alta Qualidade
+                    </span> para sua Obra
+                </h1>
+                <p class="text-lg text-brand-gray max-w-xl">
+                    Da fundação ao acabamento fino. Carlos Eduardo entrega construções seguras, reformas impecáveis e manutenções rápidas, sempre mantendo você totalmente informado em cada etapa do processo.
+                </p>
+
+                <!-- Key highlights -->
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                    <div class="flex items-start gap-2.5">
+                        <div class="p-1 rounded bg-brand-orange/10 text-brand-orange mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-100">Transparência Total</h4>
+                            <p class="text-xs text-brand-gray">Feedbacks diários do progresso</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <div class="p-1 rounded bg-brand-orange/10 text-brand-orange mt-0.5">
+                            <i data-lucide="shield" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-100">Garantia e Segurança</h4>
+                            <p class="text-xs text-brand-gray">Seguindo normas técnicas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                    <a href="#contato" class="bg-brand-orange hover:bg-brand-lightOrange text-zinc-950 font-extrabold px-8 py-4 rounded-xl text-center shadow-lg shadow-brand-orange/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        Solicitar Visita Técnica
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#servicos" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 px-8 py-4 rounded-xl text-center text-zinc-300 transition-all flex items-center justify-center gap-2">
+                        Ver Todos os Serviços
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Brand Visual / Image placeholder -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-[420px] aspect-square rounded-2xl p-4 bg-zinc-900 border border-zinc-800 shadow-2xl overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent z-10"></div>
+                    
+                    <!-- SVG Grande da Logo para destaque visual -->
+                    <div class="w-full h-full flex flex-col justify-between relative z-20">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-mono text-zinc-600">ID: CECC-2026</span>
+                            <span class="px-2.5 py-1 bg-brand-orange/10 border border-brand-orange/20 rounded text-[10px] text-brand-orange font-bold uppercase tracking-widest">Premium Service</span>
+                        </div>
+                        
+                        <div class="flex flex-col items-center justify-center my-auto py-8">
+                            <!-- Logo da C e C Grande -->
+                            <div class="w-36 h-36 flex items-center justify-center bg-black/40 rounded-full border border-brand-orange/20 shadow-xl relative overflow-hidden group-hover:border-brand-orange/50 transition-all p-3">
+                                <svg viewBox="0 0 100 100" class="w-24 h-24 text-brand-orange animate-pulse" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 90 L90 90" stroke-width="1.5" />
+                                    <!-- Andaimes verticais e horizontais -->
+                                    <path d="M20 90 L20 10 M80 90 L80 10" stroke-dasharray="2 1" />
+                                    <path d="M10 30 L90 30 M10 60 L90 60" stroke-dasharray="2 2" />
+                                    <!-- Estrutura predial -->
+                                    <path d="M25 90 V45 L50 25 L75 45 V90" stroke-width="2.5" />
+                                    <path d="M35 90 V20 L50 10 L65 20 V90" stroke-width="2" />
+                                    <path d="M15 50 L45 25 M55 25 L85 50" stroke-width="1.5" />
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-black tracking-widest text-brand-orange mt-6">C e C</h2>
+                            <p class="text-xs uppercase tracking-[0.3em] text-zinc-400">construção civil</p>
+                        </div>
+
+                        <div class="bg-zinc-950/80 backdrop-blur-sm border border-zinc-800 p-3.5 rounded-xl flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-brand-orange/20 flex items-center justify-center">
+                                    <i data-lucide="user" class="w-4 h-4 text-brand-orange"></i>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-xs text-brand-gray font-medium">Mestre de Obras</p>
+                                    <p class="text-sm font-bold text-white">Carlos Eduardo</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="flex text-amber-500">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                </div>
+                                <span class="text-[10px] text-brand-gray">100% de satisfação</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE O CARLOS EDUARDO -->
+    <section id="sobre" class="py-24 bg-zinc-950 border-y border-zinc-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Coluna de Texto -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-brand-orange font-semibold">
+                        Compromisso & Qualidade
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                        Por que escolher a <span class="text-brand-orange">C e C Construção Civil</span>?
+                    </h2>
+                    <p class="text-brand-gray text-base sm:text-lg leading-relaxed">
+                        Sob o comando de <strong>Carlos Eduardo</strong>, profissional experiente da construção civil, nossa empresa se destaca por entregar o que há de melhor em reformas, construções e manutenções residenciais e comerciais.
+                    </p>
+                    <p class="text-brand-gray text-base leading-relaxed">
+                        Diferente de profissionais tradicionais, Carlos Eduardo entende que a <span class="text-zinc-100 font-semibold">tranquilidade do cliente</span> é tão importante quanto uma parede bem rebocada. Por isso, oferecemos uma comunicação ativa com fotos de progresso e feedbacks frequentes sobre a sua obra.
+                    </p>
+
+                    <!-- Selos e diferenciais -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
+                            <div class="w-8 h-8 rounded-lg bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-zinc-100">Cliente Sempre Informado</h4>
+                            <p class="text-xs text-brand-gray">Atualizações diárias do andamento com fotos e vídeos diretamente no seu celular.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
+                            <div class="w-8 h-8 rounded-lg bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                                <i data-lucide="thumbs-up" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-zinc-100">Trabalho de Alta Qualidade</h4>
+                            <p class="text-xs text-brand-gray">Nivelamentos milimétricos, pintura uniforme e instalações hidráulicas à prova de vazamentos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna de Estatísticas e Destaque Visual -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-8 rounded-2xl relative overflow-hidden">
+                        <div class="absolute -right-16 -bottom-16 w-48 h-48 bg-brand-orange/5 rounded-full blur-3xl"></div>
+                        
+                        <h3 class="text-xl font-bold mb-6 text-brand-orange flex items-center gap-2">
+                            <i data-lucide="activity" class="w-5 h-5"></i> Padrão C e C
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1.5">
+                                    <span class="text-zinc-400 font-medium">Precisão e Acabamento</span>
+                                    <span class="text-brand-orange font-bold">100%</span>
+                                </div>
+                                <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-orange rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-1.5">
+                                    <span class="text-zinc-400 font-medium">Cumprimento de Prazos</span>
+                                    <span class="text-brand-orange font-bold">98%</span>
+                                </div>
+                                <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-orange rounded-full" style="width: 98%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-1.5">
+                                    <span class="text-zinc-400 font-medium">Limpeza pós-obra</span>
+                                    <span class="text-brand-orange font-bold">95%</span>
+                                </div>
+                                <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-orange rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-zinc-800 grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <p class="text-3xl font-extrabold text-brand-orange">10+</p>
+                                <p class="text-[10px] uppercase tracking-wider text-zinc-400 mt-1">Anos de Prática</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-extrabold text-brand-orange">150+</p>
+                                <p class="text-[10px] uppercase tracking-wider text-zinc-400 mt-1">Clientes Satisfeitos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSSOS SERVIÇOS (DIVERSIDADE DE TRABALHOS) -->
+    <section id="servicos" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-brand-orange font-semibold">
+                    Especialidades & Soluções
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    O que fazemos por você
+                </h2>
+                <p class="text-brand-gray">
+                    De pequenos reparos hidráulicos diários a grandes reformas estruturais residenciais ou comerciais. Navegue por categorias e conheça todas as nossas qualificações.
+                </p>
+
+                <!-- Filtros Interativos por Categoria -->
+                <div class="flex flex-wrap justify-center gap-2 pt-4">
+                    <button class="filter-btn active bg-brand-orange text-zinc-950 font-bold px-4 py-2 rounded-lg text-xs transition-all uppercase tracking-wider" data-category="todos">
+                        Todos
+                    </button>
+                    <button class="filter-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-bold px-4 py-2 rounded-lg text-xs transition-all uppercase tracking-wider" data-category="reforma">
+                        Reformas & Construções
+                    </button>
+                    <button class="filter-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-bold px-4 py-2 rounded-lg text-xs transition-all uppercase tracking-wider" data-category="hidraulica">
+                        Hidráulica
+                    </button>
+                    <button class="filter-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-bold px-4 py-2 rounded-lg text-xs transition-all uppercase tracking-wider" data-category="acabamento">
+                        Acabamentos & Pintura
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Serviços -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Serviço 1: Construção residencial -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="reforma">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="home" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Construção Residencial</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Construímos sua casa do zero, desde as sapatas, fundação, vigas estruturais, lajes, até a entrega da chave na mão, atendendo à risca os projetos de arquitetura e engenharia.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Estrutural</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 2: Reformas -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="reforma">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="wrench" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Reformas Gerais</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Renovação de banheiros, cozinhas, salas e escritórios. Adequamos seu layout modificando paredes, revestimentos e estruturas para o seu máximo conforto.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Civil</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 3: Conserto de instalações hidráulicas -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="hidraulica">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="droplet" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Instalações Hidráulicas</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Reparo imediato de vazamentos, encanamento de água quente e fria, esgoto, caixas de gordura e solução para infiltrações desagradáveis.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Encanamento</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 4: Instalação de azulejos e pisos -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="acabamento">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="grid" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Pisos & Azulejos</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Assentamento profissional de porcelanato de grande formato, azulejos, pastilhas e rodapés com paginação milimetricamente calculada e rejunte perfeito.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Acabamento</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 5: Pintura interna e de áreas externas -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="acabamento">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="paint-bucket" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Pintura Comercial & Residencial</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Serviço de pintura interna e externa com preparo ideal de superfícies, massa corrida, textura, grafiato e impermeabilização total de fachadas contra umidade.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Pintura</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 6: Carpintaria de telhados -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="reforma">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="hammer" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Carpintaria de Telhados</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Estruturas em madeira para telhados residenciais, trocas de telhas, conserto de vigamentos e instalação de mantas térmicas para perfeito conforto acústico e térmico.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Madeira</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 7: Demolição controlada -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="reforma">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="anvil" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Demolição Controlada</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Remoção cirúrgica de paredes de alvenaria, pisos e estruturas desnecessárias, sempre cuidando para não afetar as vigas e pilares estruturais da edificação.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Preparação</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 8: Limpeza de calhas e rufos -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="hidraulica">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="wind" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Limpeza de Calhas e Rufos</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Manutenção preventiva para evitar transbordamento de água, vazamentos no telhado e entupimento de calhas em períodos de chuva intensa.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Manutenção</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 9: Instalação de equipamentos hidráulicos -->
+                <div class="service-card group bg-zinc-900 hover:bg-zinc-900/60 border border-zinc-800 hover:border-brand-orange/50 transition-all duration-300 p-6 rounded-2xl flex flex-col justify-between" data-category="hidraulica">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i data-lucide="shower-head" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-orange transition-colors">Equipamentos Hidráulicos</h3>
+                        <p class="text-sm text-brand-gray leading-relaxed">
+                            Instalação fina de torneiras monocomando, chuveiros elétricos e a gás, vasos sanitários com caixa acoplada, misturadores e cubas sofisticadas.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                        <span class="text-zinc-500 font-mono">Acessórios</span>
+                        <a href="#contato" class="text-brand-orange hover:underline font-semibold flex items-center gap-1">Contratar <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Lista completa de micro-trabalhos em pílulas -->
+            <div class="mt-16 bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+                <h4 class="text-lg font-bold text-zinc-100 mb-4 text-center sm:text-left flex items-center gap-2">
+                    <i data-lucide="check-square" class="w-5 h-5 text-brand-orange"></i>
+                    Lista Geral de Serviços e Habilidades de Carlos Eduardo:
+                </h4>
+                <div class="flex flex-wrap gap-2.5">
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Reformas em Apartamentos</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Conserto de instalações hidráulicas</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Construção residencial</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Demolições rápidas</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Instalação de azulejos</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Equipamentos hidráulicos de alto padrão</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Instalação de pisos porcelanatos e cerâmicas</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Limpeza de calhas e condutores</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Operário de construção civil em geral</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Pintura de áreas externas e fachadas</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Pintura de tetos e paredes internas</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Reformas estruturais</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Reparo localizado de pisos</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Reformas em Restaurantes e Lojas</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Troca localizada de azulejos trincados</span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3.5 py-1.5 rounded-full text-xs">Carpintaria e estrutura de telhados</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANTES E DEPOIS / INTERATIVO DE COMPARAÇÃO -->
+    <section id="portfolio" class="py-24 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Descritivo -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-brand-orange font-semibold">
+                        Nossas Obras Reais
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                        Transformação <br>que salta aos olhos
+                    </h2>
+                    <p class="text-brand-gray text-base leading-relaxed">
+                        Arraste o controle ou clique nas abas para comparar as reformas executadas por Carlos Eduardo. Acabamento preciso, respeito às linhas arquitetônicas e resultados que duram de verdade.
+                    </p>
+
+                    <!-- Lista de Obras em Destaque -->
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 text-sm text-zinc-300">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-brand-orange"></i>
+                            Banheiro Comercial - Restaurante Campinas
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-zinc-300">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-brand-orange"></i>
+                            Porcelanato de Grande Formato em Apartamento
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-zinc-300">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-brand-orange"></i>
+                            Fachada Residencial & Impermeabilização
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagem interativa de Antes/Depois (Simulação rica via CSS) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-3xl shadow-2xl">
+                        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden group select-none" id="slider-container">
+                            
+                            <!-- Imagem "Depois" (Fundo) -->
+                            <div class="absolute inset-0 bg-zinc-950 flex flex-col items-center justify-center text-center p-8">
+                                <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#e0842a_1px,transparent_1px)] [bg-size:16px_16px]"></div>
+                                <!-- Ilustração do DEPOIS -->
+                                <div class="relative z-10 space-y-4">
+                                    <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded text-emerald-400 font-bold text-xs uppercase tracking-wider">Trabalho Concluído (Depois)</span>
+                                    <div class="flex items-center justify-center text-brand-orange">
+                                        <i data-lucide="sparkles" class="w-16 h-16"></i>
+                                    </div>
+                                    <h3 class="text-xl font-extrabold text-white">Ambiente Impecável</h3>
+                                    <p class="text-xs text-brand-gray max-w-sm mx-auto">Revestimento nivelado, juntas de dilatação perfeitas de 1mm, rejunte epóxi impermeável e pintura premium sem manchas.</p>
+                                </div>
+                            </div>
+
+                            <!-- Imagem "Antes" (Sobreposta com largura controlada pelo slider) -->
+                            <div class="absolute inset-y-0 left-0 right-0 bg-zinc-800 overflow-hidden flex flex-col items-center justify-center text-center p-8 transition-all" id="before-image" style="width: 50%;">
+                                <div class="absolute inset-0 bg-black/60 z-0"></div>
+                                <div class="absolute inset-0 opacity-30 bg-[radial-gradient(#ff0000_1px,transparent_1px)] [bg-size:16px_16px]"></div>
+                                <!-- Ilustração do ANTES -->
+                                <div class="relative z-10 space-y-4 w-96 max-w-full">
+                                    <span class="px-3 py-1 bg-red-500/10 border border-red-500/20 rounded text-red-400 font-bold text-xs uppercase tracking-wider">Ambiente Antigo (Antes)</span>
+                                    <div class="flex items-center justify-center text-red-400">
+                                        <i data-lucide="frown" class="w-16 h-16"></i>
+                                    </div>
+                                    <h3 class="text-xl font-extrabold text-zinc-300">Problemas e Desgastes</h3>
+                                    <p class="text-xs text-zinc-400">Azulejos quebrados, umidade ascendente que estragava a pintura externa e vazamentos na válvula de descarga antiga.</p>
+                                </div>
+                            </div>
+
+                            <!-- Linha divisória e puxador do slider -->
+                            <div class="absolute inset-y-0 w-1 bg-brand-orange cursor-ew-resize flex items-center justify-center transition-all z-30" id="slider-handle" style="left: 50%;">
+                                <div class="w-8 h-8 rounded-full bg-brand-orange text-zinc-950 flex items-center justify-center shadow-lg shadow-brand-orange/50 border border-white">
+                                    <i data-lucide="move-horizontal" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between items-center mt-3 text-xs text-brand-gray px-1">
+                            <span>Deslize a barra para ver a mudança</span>
+                            <span class="text-brand-orange font-bold">Banheiro & Hidráulica</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULADORA DE ORÇAMENTO RÁPIDA / COMPROMISSO DE CLIENTE -->
+    <section class="py-24 relative overflow-hidden bg-gradient-to-b from-brand-black to-zinc-950">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 sm:p-12 space-y-8">
+                <div class="text-center space-y-3">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Simulador de Orçamento Exclusivo</h2>
+                    <p class="text-sm text-brand-gray max-w-lg mx-auto">Selecione o que precisa e receba instantaneamente uma estimativa aproximada para o seu projeto.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-gray">Tipo de Serviço Principal:</label>
+                        <select id="calc-service" class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 text-sm focus:border-brand-orange outline-none transition-colors">
+                            <option value="reforma-banheiro">Reforma Completa de Banheiro (Assentamento + Hidráulica)</option>
+                            <option value="pintura-geral">Pintura de Paredes e Teto (Massa + Acabamento)</option>
+                            <option value="pisos-porcelanato">Instalação de Pisos Porcelanatos</option>
+                            <option value="hidraulica-reparo">Consertos e Reparos Hidráulicos Localizados</option>
+                            <option value="telhado-reforma">Construção/Reforma de Telhado de Madeira</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-gray">Área Aproximada (m²):</label>
+                        <input type="number" id="calc-area" value="20" min="1" class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 text-sm focus:border-brand-orange outline-none transition-colors">
+                    </div>
+                </div>
+
+                <!-- Estimativa de Preço Dinâmica -->
+                <div class="p-6 bg-zinc-950 rounded-2xl border border-zinc-800 text-center space-y-2">
+                    <p class="text-xs uppercase tracking-wider text-brand-gray">Estimativa Mínima Recomendada</p>
+                    <div class="text-3xl sm:text-4xl font-black text-brand-orange" id="calc-result">R$ 2.400,00</div>
+                    <p class="text-[10px] text-zinc-500">*A estimativa serve apenas como base inicial de mão de obra. Agende uma visita para avaliação precisa com o Carlos Eduardo.</p>
+                </div>
+
+                <div class="text-center">
+                    <a href="https://wa.me/5519974194179?text=Olá%20Carlos!%20Fiz%20o%20cálculo%20no%20seu%20simulador%20e%20gostaria%20de%20confirmar%20as%20especificações." target="_blank" class="inline-flex bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-600/10 items-center gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Enviar Estimativa para o WhatsApp de Carlos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÁREA DE CONTATO, DADOS DA EMPRESA, LOGO E HORÁRIO (Requisito Especial) -->
+    <section id="contato" class="py-24 bg-zinc-950 border-t border-zinc-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Dados da Empresa / Cartão de Visitas Oficial -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-brand-orange font-semibold">
+                            C e C Construção Civil
+                        </div>
+                        <h2 class="text-3xl font-extrabold tracking-tight">Fale Conosco</h2>
+                        <p class="text-brand-gray text-sm sm:text-base">
+                            Entre em contato agora mesmo para agendar sua avaliação. Carlos Eduardo atende residências, apartamentos, restaurantes e comércio em geral na região.
+                        </p>
+                    </div>
+
+                    <!-- Cartão Corporativo Oficial -->
+                    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl space-y-6 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full blur-2xl pointer-events-none"></div>
+                        
+                        <div class="flex items-center gap-4">
+                            <!-- Logo da C e C Construção Civil -->
+                            <div class="w-16 h-16 bg-brand-black border border-brand-orange/20 rounded-xl flex items-center justify-center p-1">
+                                <svg viewBox="0 0 100 100" class="w-12 h-12 text-brand-orange" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M10 90 L90 90" />
+                                    <!-- Predinhos -->
+                                    <path d="M30 90 V50 L50 35 L70 50 V90" />
+                                    <path d="M40 90 V25 L50 15 L60 25 V90" />
+                                    <!-- Logo e Texto interno -->
+                                    <text x="50" y="70" text-anchor="middle" font-size="12" font-weight="900" fill="currentColor" stroke="none">C e C</text>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">C e C Construção Civil</h3>
+                                <p class="text-xs text-brand-orange font-semibold">Inovação e Qualidade na Obra</p>
+                                <p class="text-[10px] text-zinc-500">Mestre responsável: Carlos Eduardo</p>
+                            </div>
+                        </div>
+
+                        <!-- Detalhes de Atendimento e Telefone (Requisito) -->
+                        <div class="space-y-4 border-t border-zinc-800/80 pt-4 text-sm">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-zinc-950 flex items-center justify-center text-brand-orange">
+                                    <i data-lucide="phone" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-brand-gray font-medium">Telefone de Contato / WhatsApp</p>
+                                    <a href="tel:19974194179" class="text-base font-extrabold text-white hover:text-brand-orange transition-colors">
+                                        (19) 97419-4179
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-zinc-950 flex items-center justify-center text-brand-orange">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-brand-gray font-medium">Horário de Atendimento</p>
+                                    <p class="text-sm font-bold text-white">Segunda a Sexta: 07h às 17h</p>
+                                    <p class="text-[10px] text-brand-gray">Sábados e domingos: Plantão de emergência via chat</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-zinc-950 flex items-center justify-center text-brand-orange">
+                                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-brand-gray font-medium">Região Atendida</p>
+                                    <p class="text-sm font-bold text-white">Campinas, Valinhos, Vinhedo e Região Metropolitana</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <a href="https://wa.me/5519974194179?text=Olá%20Carlos!%20Encontrei%20sua%20landing%20page%20e%20gostaria%20de%20agendar%20um%20orçamento." target="_blank" class="w-full bg-brand-orange hover:bg-brand-lightOrange text-zinc-950 font-bold py-3 px-4 rounded-xl text-center text-sm transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="message-square" class="w-4 h-4"></i>
+                                Chamar Diretamente no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Contato Dinâmico -->
+                <div class="lg:col-span-7">
+                    <div class="bg-zinc-900 border border-zinc-800 p-8 rounded-3xl space-y-6">
+                        <h3 class="text-xl font-bold text-white">Solicite uma Ligação de Volta</h3>
+                        <p class="text-xs text-brand-gray">Preencha os dados abaixo e entraremos em contato o mais breve possível para agendar sua visita.</p>
+                        
+                        <form id="contact-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-zinc-400 uppercase">Seu Nome:</label>
+                                    <input type="text" id="form-name" required placeholder="Ex: Roberto Silva" class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 text-sm focus:border-brand-orange outline-none transition-colors">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-bold text-zinc-400 uppercase">Seu Telefone:</label>
+                                    <input type="tel" id="form-phone" required placeholder="Ex: (19) 99999-9999" class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 text-sm focus:border-brand-orange outline-none transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-zinc-400 uppercase">Serviço Desejado:</label>
+                                <select id="form-service" class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 text-sm focus:border-brand-orange outline-none transition-colors">
+                                    <option>Reforma Geral / Demolição</option>
+                                    <option>Conserto de Instalações Hidráulicas</option>
+                                    <option>Instalação de Pisos e Azulejos</option>
+                                    <option>Pintura Interna ou Externa</option>
+                                    <option>Carpintaria de Telhado</option>
+                                    <option>Outros Serviços Rápidos</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-zinc-400 uppercase">Descrição do Trabalho:</label>
+                                <textarea id="form-message" rows="4" placeholder="Conte brevemente o que você precisa fazer na sua obra ou reforma..." class="w-full bg-zinc-950 border border-zinc-800 text-white rounded-xl px-4 py-3 text-sm focus:border-brand-orange outline-none transition-colors resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-zinc-100 hover:bg-white text-zinc-950 font-extrabold py-3.5 px-4 rounded-xl text-center text-sm transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Enviar Mensagem via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-black border-t border-zinc-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 flex items-center justify-center bg-zinc-900 border border-brand-orange/30 rounded-lg">
+                    <svg viewBox="0 0 100 100" class="w-8 h-8 text-brand-orange" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M10 90 L90 90" />
+                        <path d="M25 90 V50 L50 35 L70 50 V90" />
+                    </svg>
+                </div>
+                <div class="flex flex-col text-left">
+                    <span class="text-lg font-bold tracking-widest text-brand-orange leading-none">C e C</span>
+                    <span class="text-[8px] uppercase tracking-[0.2em] text-brand-gray">construção civil</span>
+                </div>
+            </div>
+            
+            <p class="text-xs text-brand-gray text-center md:text-right">
+                &copy; 2026 C e C Construção Civil. Todos os direitos reservados. <br>
+                Mão de obra profissional por Carlos Eduardo.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT DE INTERATIVIDADE -->
+    <script>
+        // Inicializar os ícones Lucide
+        lucide.createIcons();
+
+        // 1. Menu Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Filtro Interativo de Serviços
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover active de todos os botões
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-orange', 'text-zinc-950', 'active');
+                    b.classList.add('bg-zinc-900', 'text-zinc-300');
+                });
+
+                // Ativar este botão
+                btn.classList.add('bg-brand-orange', 'text-zinc-950', 'active');
+                btn.classList.remove('bg-zinc-900', 'text-zinc-300');
+
+                const selectedCategory = btn.getAttribute('data-category');
+
+                serviceCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (selectedCategory === 'todos' || cardCategory === selectedCategory) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 3. Slider Comparativo de Antes e Depois (Interativo e responsivo)
+        const sliderContainer = document.getElementById('slider-container');
+        const beforeImage = document.getElementById('before-image');
+        const sliderHandle = document.getElementById('slider-handle');
+
+        let isDragging = false;
+
+        const updateSlider = (clientX) => {
+            const rect = sliderContainer.getBoundingClientRect();
+            let position = ((clientX - rect.left) / rect.width) * 100;
+
+            // Bloquear limites entre 5% e 95% para não quebrar a UI
+            if (position < 5) position = 5;
+            if (position > 95) position = 95;
+
+            beforeImage.style.width = `${position}%`;
+            sliderHandle.style.left = `${position}%`;
+        };
+
+        const handleStart = (e) => {
+            isDragging = true;
+            // Prevenir comportamento de rolagem ao usar toque no slider
+            if (e.cancelable) e.preventDefault();
+        };
+
+        const handleMove = (e) => {
+            if (!isDragging) return;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            updateSlider(clientX);
+        };
+
+        const handleEnd = () => {
+            isDragging = false;
+        };
+
+        // Eventos de Mouse
+        sliderHandle.addEventListener('mousedown', handleStart);
+        window.addEventListener('mousemove', handleMove);
+        window.addEventListener('mouseup', handleEnd);
+
+        // Eventos de Touch para celulares/tablets (Responsividade)
+        sliderHandle.addEventListener('touchstart', handleStart, { passive: false });
+        window.addEventListener('touchmove', handleMove, { passive: false });
+        window.addEventListener('touchend', handleEnd);
+
+        // Evento de clique direto no container
+        sliderContainer.addEventListener('click', (e) => {
+            if (e.target !== sliderHandle && !sliderHandle.contains(e.target)) {
+                updateSlider(e.clientX);
+            }
+        });
+
+        // 4. Simulador Dinâmico de Orçamento
+        const calcService = document.getElementById('calc-service');
+        const calcArea = document.getElementById('calc-area');
+        const calcResult = document.getElementById('calc-result');
+
+        const calculateEstimate = () => {
+            const serviceType = calcService.value;
+            const area = Math.max(1, parseFloat(calcArea.value) || 0);
+            let ratePerSquareMeter = 0;
+            let baseRate = 0;
+
+            switch (serviceType) {
+                case 'reforma-banheiro':
+                    ratePerSquareMeter = 180;
+                    baseRate = 1800; // Mão de obra mínima para fechamento de banheiro
+                    break;
+                case 'pintura-geral':
+                    ratePerSquareMeter = 25;
+                    baseRate = 450;
+                    break;
+                case 'pisos-porcelanato':
+                    ratePerSquareMeter = 85;
+                    baseRate = 750;
+                    break;
+                case 'hidraulica-reparo':
+                    ratePerSquareMeter = 40;
+                    baseRate = 350;
+                    break;
+                case 'telhado-reforma':
+                    ratePerSquareMeter = 120;
+                    baseRate = 1200;
+                    break;
+            }
+
+            const total = baseRate + (area * ratePerSquareMeter);
+            calcResult.innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        calcService.addEventListener('change', calculateEstimate);
+        calcArea.addEventListener('input', calculateEstimate);
+
+        // 5. Envio do Formulário de Contato para o WhatsApp
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const phone = document.getElementById('form-phone').value;
+            const service = document.getElementById('form-service').value;
+            const message = document.getElementById('form-message').value;
+
+            // Criar mensagem amigável formatada para o WhatsApp
+            const text = `Olá Carlos Eduardo! Meu nome é ${name}.\n` +
+                         `Contato: ${phone}\n` +
+                         `Preciso do serviço: *${service}*\n` +
+                         `Detalhes: ${message}`;
+
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/5519974194179?text=${encodedText}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
